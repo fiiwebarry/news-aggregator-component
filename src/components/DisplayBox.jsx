@@ -1,4 +1,5 @@
 const DisplayBox = ({ fetchedData, isLoading, selectedApi }) => {
+    console.log(fetchedData.articles);
     return (
         <div className="">
             <div className="flex mx-auto justify-center">
@@ -23,12 +24,16 @@ const DisplayBox = ({ fetchedData, isLoading, selectedApi }) => {
                                 ))}
                             </div>
                         )}
-                        {selectedApi === "newhub" && fetchedData.length > 0 && (
+                        {selectedApi === "newhub" && fetchedData.articles.length > 0 && (
                             <div className="flex flex-wrap justify-center">
-                                {fetchedData.map((item, index) => (
+                                {fetchedData.articles.map((item, index) => (
                                     <div className="p-6 flex flex-wrap shadow-lg bg-slate-100 w-99 mx-4 my-4" key={index}>
                                         <div className="flex flex-col">
-                                            {/* Render NewHub specific data */}
+                                            <p className="mb-4">Author: {item.author}</p>
+
+                                            <p>HEADLINE: {item.title}</p>
+                                            <p className="mt-1">DESCRIPTION: {item.description}</p>
+                                            <p>SOURCE: {item.url}</p>
                                         </div>
                                     </div>
                                 ))}
@@ -39,7 +44,13 @@ const DisplayBox = ({ fetchedData, isLoading, selectedApi }) => {
                                 {fetchedData.map((item, index) => (
                                     <div className="p-6 flex flex-wrap shadow-lg bg-slate-100 w-99 mx-4 my-4" key={index}>
                                         <div className="flex flex-col">
-                                            {/* Render New York Times specific data */}
+                                            <div className="flex flex-col">
+                                                <p className="mb-4">Author: {item.author}</p>
+
+                                                <p>HEADLINE: {item.title}</p>
+                                                <p className="mt-1">DESCRIPTION: {item.description}</p>
+                                                <p>SOURCE: {item.url}</p>
+                                            </div>
                                         </div>
                                     </div>
                                 ))}
