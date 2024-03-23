@@ -7,3 +7,7 @@ export const guardianApi = axios.create({
 export const newsApi = axios.create({
     baseURL: "https://newsapi.org",
 });
+
+export const newyorktimesApi = axios.create({
+    baseURL: "https://api.nytimes.com/"
+})

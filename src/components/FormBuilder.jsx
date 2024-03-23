@@ -14,7 +14,7 @@ const FormBuilder = ({ selectedApi, setSelectedApi, searchKeyword, setSearchKeyw
                     <option>Select</option>
                     <option>The Guardian</option>
                     <option>NewsHub</option>
-                    <option>Newscred</option>
+                    <option>NewYorkTimes</option>
                 </select>
                 <div className='flex gap-4'>
 
