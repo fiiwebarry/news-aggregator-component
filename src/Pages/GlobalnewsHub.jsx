@@ -12,6 +12,7 @@ const GlobalnewsHub = () => {
   const [searchCategory, setSearchCategory] = useState("")
   const [fetchedData, setFetchedData] = useState([]);
   const [isLoading, setIsLoading] = useState(false)
+  const [searchDate, setSearchDate] = useState(Date.now());
 
 
   const handleFormSubmit = async () => {
@@ -22,7 +23,8 @@ const GlobalnewsHub = () => {
         response = await guardianApi.get("/search", {
           params: {
             keyword: searchKeyword,
-            category: searchCategory,
+            sectionName: searchCategory,
+            webPublicationDate: searchDate,
             'api-key': "583de15d-29de-4ff8-89a3-ef7e8f767693"
           }
         });
@@ -30,7 +32,7 @@ const GlobalnewsHub = () => {
         response = await newsApi.get("/v2/everything", {
           params: {
             keyword: searchKeyword,
-            category: searchCategory,
+            sectionName: searchCategory,
             'api-key': "2e5472ecb66d48f89d693af0420c25ea"
           }
         });
@@ -50,7 +52,7 @@ const GlobalnewsHub = () => {
   };
 
   useEffect(() => {
-    if (selectedApi && searchKeyword && searchCategory) {
+    if (selectedApi) {
       handleFormSubmit();
     }
   }, [selectedApi, searchKeyword, searchCategory]);
@@ -65,10 +67,23 @@ const GlobalnewsHub = () => {
         setSearchKeyword={setSearchKeyword}
         searchCategory={searchCategory}
         setSearchCategory={setSearchCategory}
-        handleSubmit={handleFormSubmit}
+        searchDate={searchDate}
+        setSearchDate={setSearchDate}
+
       />
 
-      <DisplayBox fetchedData={fetchedData} isLoading={isLoading} setIsLoading={setIsLoading} />
+      <DisplayBox
+        fetchedData={fetchedData}
+        isLoading={isLoading}
+        setIsLoading={setIsLoading}
+        searchKeyword={searchKeyword}
+        setSearchKeyword={setSearchKeyword}
+        searchCategory={searchCategory}
+        setSearchCategory={setSearchCategory}
+        searchDate={searchDate}
+        setSearchDate={setSearchDate} />
+
+
 
     </>
   )

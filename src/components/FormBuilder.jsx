@@ -1,13 +1,14 @@
 import { useState } from "react"
 
 const FormBuilder = ({ selectedApi, setSelectedApi, searchKeyword, setSearchKeyword, searchCategory,
-    setSearchCategory, handleSubmit }) => {
+    setSearchCategory, searchDate,
+    setSearchDate }) => {
 
 
 
 
     return (
-        <form onSubmit={handleSubmit} className='flex justify-center mx-auto mt-[30px] mb-[20px] '>
+        <section className='flex justify-center mx-auto mt-[30px] mb-[20px] '>
             <div className='flex gap-[60px]'>
                 <select className='w-[200px] h-[40px] border border-gray-300 p-2 rounded-md' value={selectedApi} onChange={(e) => setSelectedApi(e.target.value)}>
                     <option>Select</option>
@@ -31,17 +32,19 @@ const FormBuilder = ({ selectedApi, setSelectedApi, searchKeyword, setSearchKeyw
                         onChange={(e) => setSearchCategory(e.target.value)}
 
                     />
-                    {/* <input className="rounded-md w-[200px] border border-gray-300 p-2  h-[40px]" type='text'
-                        placeholder='search Keyword'
-                        autoComplete='off'
-
-                    /> */}
+                    <input className="rounded-md w-[200px] border border-gray-300 p-2  h-[40px]"
+                        type="date"
+                        id="date"
+                        name="date"
+                        value={searchDate}
+                        onChange={(e) => setSearchDate(e.target.value)}
+                    />
                 </div>
 
             </div>
-            <button type="submit" className="bg-[blue]" >Search</button>
 
-        </form>
+
+        </section>
     )
 }
 

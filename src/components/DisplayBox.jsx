@@ -1,4 +1,7 @@
-const DisplayBox = ({ fetchedData, isLoading }) => {
+const DisplayBox = ({ fetchedData, isLoading, searchKeyword, searchCategory }) => {
+
+    console.log(searchCategory);
+
     return (
         <div className="">
             <div className="flex mx-auto justify-center">
@@ -10,18 +13,23 @@ const DisplayBox = ({ fetchedData, isLoading }) => {
                     <div><p>Newshub</p></div>
                 ) : (
                     <div className="flex flex-wrap gap-[50px] justify-center p-3 mt-[10px]">
-                        {fetchedData && fetchedData.results ? (
-                            fetchedData.results.map((item, index) => (
-                                <div className="p-6 flex flex-wrap shadow-lg  bg-slate-100 w-[45%]" key={index}>
-                                    {/* Render each item from The Guardian */}
 
-                                    <p>Type: {item.type}</p>
-                                    <p>Section ID: {item.sectionId}</p>
-                                    <p>Section Name: {item.sectionName}</p>
-                                    <p>Title: {item.webTitle}</p>
-                                    <p>URL: {item.webUrl}</p>
-                                </div>
-                            ))
+                        {fetchedData.length > 0 ? (
+                            <div className="flex flex-wrap justify-center">
+                                {fetchedData.map((item, index) => (
+                                    <div className="p-6 flex flex-wrap shadow-lg bg-slate-100 w-99 mx-4 my-4" key={index}>
+                                        {/* Render each item from The Guardian */}
+                                        <div className="flex flex-col">
+                                            <p className="mb-4">INFORMATION: {item.type}</p>
+                                            <p className="mt-1">CATEGORY: {item.sectionName}</p>
+
+                                            <p>HEADLINE:{item.webTitle}  </p>
+                                            <p>SOURCE: {item.webUrl}</p>
+                                        </div>
+
+                                    </div>
+                                ))}
+                            </div>
                         ) : (
                             <p>No data available</p>
                         )}
