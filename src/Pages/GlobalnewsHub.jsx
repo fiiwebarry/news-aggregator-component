@@ -22,27 +22,33 @@ const GlobalnewsHub = () => {
       if (selectedApi === 'The Guardian') {
         response = await guardianApi.get("/search", {
           params: {
-            keyword: searchKeyword,
-            sectionName: searchCategory,
-            webPublicationDate: searchDate,
+            q: searchKeyword,
+            'section': searchCategory,
+            'from-date': searchDate,
             'api-key': "583de15d-29de-4ff8-89a3-ef7e8f767693"
           }
+
         });
+        setFetchedData(response.data.response.results)
+
       } else if (selectedApi === 'NewsHub') {
-        response = await newsApi.get("/v2/everything", {
+        const response = await newsApi.get("/v2/everything", {
           params: {
-            keyword: searchKeyword,
-            sectionName: searchCategory,
-            'api-key': "2e5472ecb66d48f89d693af0420c25ea"
+            q: searchKeyword,
+            from: searchDate,
+            sortBy: "publishedAt",
+            apiKey: "2e5472ecb66d48f89d693af0420c25ea"
           }
         });
+
+        setFetchedData(response.data.response.articles)
+
+
       }
       else if (selectedApi === 'Newscred') {
         // Add logic to fetch data from Newscred API
       }
 
-      setFetchedData(response.data.response.results);
-      console.log(response.data.response.results)
 
     } catch (error) {
       console.error("Error fetching data:", error);
