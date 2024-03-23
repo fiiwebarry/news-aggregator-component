@@ -10,16 +10,16 @@ const DisplayBox = ({ fetchedData, isLoading }) => {
                     <div><p>Newshub</p></div>
                 ) : (
                     <div className="flex flex-wrap gap-[50px] justify-center p-3 mt-[10px]">
-                        {fetchedData && fetchedData.guardian ? (
-                            fetchedData.guardian.map((item, index) => (
+                        {fetchedData && fetchedData.results ? (
+                            fetchedData.results.map((item, index) => (
                                 <div className="p-6 flex flex-wrap shadow-lg  bg-slate-100 w-[45%]" key={index}>
                                     {/* Render each item from The Guardian */}
 
-                                    <p>{item.type}</p>
-                                    <p>{item.sectionId}</p>
-                                    <p>{item.sectionName}</p>
-                                    <p>{item.webTitle}</p>
-                                    <p>{item.webUrl}</p>
+                                    <p>Type: {item.type}</p>
+                                    <p>Section ID: {item.sectionId}</p>
+                                    <p>Section Name: {item.sectionName}</p>
+                                    <p>Title: {item.webTitle}</p>
+                                    <p>URL: {item.webUrl}</p>
                                 </div>
                             ))
                         ) : (
