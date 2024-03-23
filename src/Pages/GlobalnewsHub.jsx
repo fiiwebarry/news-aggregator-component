@@ -3,7 +3,7 @@ import Header from '../components/Header'
 import FormBuilder from '/src/components/FormBuilder'
 import DisplayBox from '../components/DisplayBox'
 import { useState } from 'react'
-import { guardianApi, newsApi } from '../axios/axios'
+import { guardianApi, newsApi, newyorktimesApi } from '../axios/axios'
 
 const GlobalnewsHub = () => {
 
@@ -41,11 +41,24 @@ const GlobalnewsHub = () => {
           }
         });
 
-        setFetchedData(response.data.response.articles)
+        setFetchedData(response.articles)
+        console.log(response.articles);
 
 
       }
-      else if (selectedApi === 'Newscred') {
+      else if (selectedApi === 'NewYorkTimes') {
+        const response = await newyorktimesApi.get("/svc/search/v2/articlesearch.json", {
+          params: {
+            q: searchKeyword,
+            begin_date: searchDate,
+            sort: "newest",
+            apikey: "1VudHApjkiEta3GZjMTGBOBmeAEmlJdv"
+          }
+        });
+
+        setFetchedData(response.data.response.docs)
+
+
         // Add logic to fetch data from Newscred API
       }
 
@@ -87,7 +100,9 @@ const GlobalnewsHub = () => {
         searchCategory={searchCategory}
         setSearchCategory={setSearchCategory}
         searchDate={searchDate}
-        setSearchDate={setSearchDate} />
+        setSearchDate={setSearchDate}
+        selectedApi={selectedApi} />
+
 
 
 
