@@ -59,9 +59,6 @@ const GlobalnewsHub = () => {
         });
 
         setFetchedData(response.data.response.docs)
-
-
-        // Add logic to fetch data from Newscred API
       }
 
 
@@ -91,7 +88,6 @@ const GlobalnewsHub = () => {
         searchDate={searchDate}
         setSearchDate={setSearchDate}
         handleSubmit={handleFormSubmit}
-
       />
 
       <DisplayBox
@@ -105,11 +101,7 @@ const GlobalnewsHub = () => {
         searchDate={searchDate}
         setSearchDate={setSearchDate}
         selectedApi={selectedApi} />
-
-
-
-
-    </>
+ </>
   )
 }
 

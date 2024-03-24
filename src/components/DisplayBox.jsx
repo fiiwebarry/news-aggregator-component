@@ -1,5 +1,5 @@
 const DisplayBox = ({ fetchedData, isLoading, selectedApi }) => {
-    console.log(fetchedData.results);
+    
     return (
         <div className="">
             <div className="flex mx-auto justify-center">
@@ -7,10 +7,10 @@ const DisplayBox = ({ fetchedData, isLoading, selectedApi }) => {
             </div>
             <div className="container mx-auto lg:w-[990px] border rounded-md h-auto shadow-md">
                 {isLoading ? (
-                    <div><p>Loading...</p></div>
+                    <div><p>Loading new Feeds...</p></div>
                 ) : (
                     <div className="flex flex-wrap gap-[50px] justify-center p-3 mt-[10px]">
-                        {selectedApi === "guardian" && fetchedData.length > 0 && (
+                        {selectedApi === "The Guardian" && fetchedData.length > 0 && (
                             <div className="flex flex-wrap justify-center">
                                 {fetchedData.map((item, index) => {
                                     const { type, sectionName, webTitle, webUrl } = item;
@@ -23,16 +23,16 @@ const DisplayBox = ({ fetchedData, isLoading, selectedApi }) => {
                                                 <p>SOURCE: {webUrl}</p>
                                             </div>
                                         </div>
-                                    );
-                                })}
+                                    )
+                                }) }
                             </div>
                         )}
 
+                       
 
 
 
-
-                        {selectedApi === "newhub" && fetchedData.articles.length > 0 && (
+                        {selectedApi === "NewsHub" && fetchedData.articles.length > 0 && (
                             <div className="flex flex-wrap justify-center">
                                 {fetchedData.articles.map((item, index) => (
                                     <div className="p-6 flex flex-wrap shadow-lg bg-slate-100 w-99 mx-4 my-4" key={index}>
@@ -47,7 +47,7 @@ const DisplayBox = ({ fetchedData, isLoading, selectedApi }) => {
                                 ))}
                             </div>
                         )}
-                        {selectedApi === "newyorktimes" && fetchedData.length > 0 && (
+                        {selectedApi === "NewYorkTimes" && fetchedData.length > 0 && (
                             <div className="flex flex-wrap justify-center">
                                 {fetchedData.map((item, index) => (
                                     <div className="p-6 flex flex-wrap shadow-lg bg-slate-100 w-99 mx-4 my-4" key={index}>
