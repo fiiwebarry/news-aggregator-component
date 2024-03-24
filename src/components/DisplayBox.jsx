@@ -10,9 +10,11 @@ const DisplayBox = ({ fetchedData, isLoading, selectedApi }) => {
                     <div><p>Loading new Feeds...</p></div>
                 ) : (
                     <div className="flex flex-wrap gap-[50px] justify-center p-3 mt-[10px]">
+
                         {selectedApi === "The Guardian" && fetchedData.length > 0 && (
                             <div className="flex flex-wrap justify-center">
                                 {fetchedData.map((item, index) => {
+                                    console.log(fetchedData);
                                     const { type, sectionName, webTitle, webUrl } = item;
                                     return (
                                         <div className="p-6 flex flex-wrap shadow-lg bg-slate-100 w-99 mx-4 my-4" key={index}>
@@ -28,13 +30,10 @@ const DisplayBox = ({ fetchedData, isLoading, selectedApi }) => {
                             </div>
                         )}
 
-                       
-
-
-
-                        {selectedApi === "NewsHub" && fetchedData.articles.length > 0 && (
+                       {selectedApi === "NewsHub" && fetchedData.articles.length > 0 && (
                             <div className="flex flex-wrap justify-center">
                                 {fetchedData.articles.map((item, index) => (
+                                
                                     <div className="p-6 flex flex-wrap shadow-lg bg-slate-100 w-99 mx-4 my-4" key={index}>
                                         <div className="flex flex-col">
                                             <p className="mb-4">Author: {item.author}</p>
@@ -47,6 +46,7 @@ const DisplayBox = ({ fetchedData, isLoading, selectedApi }) => {
                                 ))}
                             </div>
                         )}
+
                         {selectedApi === "NewYorkTimes" && fetchedData.length > 0 && (
                             <div className="flex flex-wrap justify-center">
                                 {fetchedData.map((item, index) => (
