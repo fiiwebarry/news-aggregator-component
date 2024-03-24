@@ -8,15 +8,15 @@ const FormBuilder = ({ selectedApi, setSelectedApi, searchKeyword, setSearchKeyw
 
 
     return (
-        <form onSubmit={handleSubmit} className='flex justify-center mx-auto mt-[30px] mb-[20px] '>
-            <div className='flex gap-[60px]'>
+        <form onSubmit={handleSubmit} className=' lg:flex lg:flex-row flex flex-col justify-center mx-auto mt-[30px] mb-[20px] '>
+            <div className='lg:flex lg:flex-row flex flex-col gap-[60px]'>
                 <select className='w-[200px] h-[40px] border border-gray-300 p-2 rounded-md' value={selectedApi} onChange={(e) => setSelectedApi(e.target.value)}>
                     <option>Select</option>
                     <option>The Guardian</option>
                     <option>NewsHub</option>
                     <option>NewYorkTimes</option>
                 </select>
-                <div className='flex gap-4'>
+                <div className=' lg:flex lg:flex-row flex flex-col  gap-4'>
 
                     <input className="rounded-md w-[200px] border border-gray-300 p-2 h-[40px]" type='text'
                         placeholder='search Keyword'
