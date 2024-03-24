@@ -6,7 +6,7 @@ const Header = () => {
             <nav className=' container mx-auto lg:w-[990px] shadow-md bg-[white] p-5'>
                 <div className="flex justify-center">
                     <h1 className='text-[28px]'>News Aggregator Hub</h1>
-                    <span className='text-[28px]'><SiWebmoney /></span>
+                    <span className='text-[28px] text-[blue]'><SiWebmoney /></span>
                 </div>
 
             </nav>

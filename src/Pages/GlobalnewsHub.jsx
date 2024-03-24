@@ -7,12 +7,13 @@ import { guardianApi, newsApi, newyorktimesApi } from '../axios/axios'
 
 const GlobalnewsHub = () => {
 
-  const [selectedApi, setSelectedApi] = useState("The Guardian");
+  const [selectedApi, setSelectedApi] = useState("Source");
   const [searchKeyword, setSearchKeyword] = useState("");
   const [searchCategory, setSearchCategory] = useState("")
   const [fetchedData, setFetchedData] = useState([]);
   const [isLoading, setIsLoading] = useState(false)
   const [searchDate, setSearchDate] = useState(Date.now());
+  const [showImage, setShowImage] = useState(true);
 
 
   const handleFormSubmit = async (e) => {
@@ -40,7 +41,7 @@ const GlobalnewsHub = () => {
           params: {
             q: searchKeyword,
             from: searchDate,
-            sortBy: searchCategory,
+            content: searchCategory,
             apiKey: "2e5472ecb66d48f89d693af0420c25ea"
           }
         });
@@ -49,16 +50,18 @@ const GlobalnewsHub = () => {
         console.log(response.articles);
       }
       else if (selectedApi === 'NewYorkTimes') {
+        console.log(searchDate);
         const response = await newyorktimesApi.get("/svc/search/v2/articlesearch.json", {
           params: {
             q: searchKeyword,
             pub_date: searchDate,
-            sort: searchCategory,
-            apikey: "1VudHApjkiEta3GZjMTGBOBmeAEmlJdv"
+            byline_person: searchCategory,
+            'api-key': "1VudHApjkiEta3GZjMTGBOBmeAEmlJdv"
           }
         });
 
-        setFetchedData(response.data.response.docs)
+        setFetchedData(response?.data?.response?.docs)
+        console.log(response.data.response.docs);
       }
 
 
@@ -67,14 +70,9 @@ const GlobalnewsHub = () => {
     } finally {
       setIsLoading(false)
     }
+    setShowImage(false);
   };
-
-  useEffect(() => {
-    if (searchCategory && searchKeyword && searchDate) {
-      handleFormSubmit();
-    }
-  }, [selectedApi, searchKeyword, searchCategory, searchDate]);
-
+  
   return (
     <>
       <Header />
@@ -100,7 +98,11 @@ const GlobalnewsHub = () => {
         setSearchCategory={setSearchCategory}
         searchDate={searchDate}
         setSearchDate={setSearchDate}
-        selectedApi={selectedApi} />
+        selectedApi={selectedApi} 
+        showImage={showImage}
+        setShowImage={setShowImage}/>
+        
+        
  </>
   )
 }
