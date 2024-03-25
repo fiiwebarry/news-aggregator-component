@@ -18,16 +18,20 @@ const GlobalnewsHub = () => {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
+    if (selectedApi === "Source") {
+      // If no API is selected, don't perform the search
+      return;
+    }
     setIsLoading(true);
     try {
       let response;
       if (selectedApi === 'The Guardian') {
-        const formattedDate = new Date(searchDate).toISOString().split('T')[0];
+      
         response = await guardianApi.get("/search", {
           params: {
             q: searchKeyword,
             section: searchCategory,
-            usedate: formattedDate,
+            // usedate: formattedDate,
             'api-key': "583de15d-29de-4ff8-89a3-ef7e8f767693"
           }
 
@@ -36,26 +40,30 @@ const GlobalnewsHub = () => {
         console.log(response.data.response.results);
 
 
-      } else if (selectedApi === 'NewsHub') {
+      }
+       else if (selectedApi === 'NewsHub') {
         const response = await newsApi.get("/v2/everything", {
           params: {
             q: searchKeyword,
             from: searchDate,
-            content: searchCategory,
+            fq: `author:("${searchCategory}")`,
             apiKey: "2e5472ecb66d48f89d693af0420c25ea"
           }
         });
 
-        setFetchedData(response.articles)
-        console.log(response.articles);
+        setFetchedData(response.data.articles)
+        console.log(response.data.articles);
       }
+      
+      
+      
       else if (selectedApi === 'NewYorkTimes') {
         console.log(searchDate);
         const response = await newyorktimesApi.get("/svc/search/v2/articlesearch.json", {
           params: {
             q: searchKeyword,
             pub_date: searchDate,
-            byline_person: searchCategory,
+            fq: `news_desk:("${searchCategory}")`,
             'api-key': "1VudHApjkiEta3GZjMTGBOBmeAEmlJdv"
           }
         });
@@ -63,16 +71,26 @@ const GlobalnewsHub = () => {
         setFetchedData(response?.data?.response?.docs)
         console.log(response.data.response.docs);
       }
-
+      setSearchKeyword("");
+      setSearchCategory("");
+      setSearchDate(Date.now())
+      setShowImage(false);
 
     } catch (error) {
       console.error("Error fetching data:", error);
     } finally {
       setIsLoading(false)
+      
     }
-    setShowImage(false);
+    
   };
-  
+  useEffect(() => {
+    if (selectedApi !== "Source") {
+      // If an API is selected, trigger the search
+      handleFormSubmit({ preventDefault: () => {} }); // Call handleFormSubmit manually
+    }
+  }, [selectedApi]); // Trigger useEffect whenever selectedApi changes
+
   return (
     <>
       <Header />

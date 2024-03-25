@@ -42,17 +42,20 @@ const DisplayBox = ({ fetchedData, isLoading, selectedApi,showImage }) => {
                         {selectedApi === "NewsHub" && fetchedData.length > 0 && (
                             <div className="flex flex-wrap justify-center">
                                 {fetchedData.map((item, index) => (
+                                    
                                     <div className="p-6 flex flex-wrap shadow-lg bg-slate-100 lg:w-[900px] mx-4 my-4" key={index}>
                                         <div className="flex flex-col">
-                                            
-                                            <p>HEADLINE: {item.title}</p>
-                                            <p className="mt-1">DESCRIPTION: {item.snippet}</p>
-                                            <p className="mb-4">Author: {item.author}</p>
-                                            <p>SOURCE: {item.url}</p>
+                                            <p><span className="font-bold">Headline:</span> {item.title}</p>
+                                            <p className=""> <span className="font-bold">Description:</span>  {item.description}</p>
+                                            <p className="mt-1"><span className="font-semibold">Author:</span> {item.author}</p>
+                                            <p className=""><span className="font-semibold">Content:</span> {item.content}</p>
+                                            <p><span className="font-semibold">Source:</span> {item.url}</p>
+                                            <p><span className="font-semibold">Image Source:</span> {item.urlToImage}</p>
                                         </div>
                                     </div>
                                 ))}
                             </div>
+                            
                         )}
 
                         {selectedApi === "NewYorkTimes" && fetchedData.length > 0 && (
@@ -63,7 +66,8 @@ const DisplayBox = ({ fetchedData, isLoading, selectedApi,showImage }) => {
                                             
                                             <p className=""><span className="font-bold">Headline:</span>  {item.headline.main}</p>
                                             
-                                            <p className="mt-1"> <span className="font-semibold">Description:</span> {item.snippet}</p>
+                                            <p className=""> <span className="font-semibold">Description:</span> {item.snippet}</p>
+                                            <p className=""> <span className="font-semibold">Category:</span> {item.news_desk}</p>
                                             <p className=""><span className="font-semibold">Author:</span> {item.byline.original}</p>
                                             <p><span className="font-semibold">Information Type:</span> {item.document_type}</p>
                                             <p className="lg:text-[18px] text-[12px]"><span className="font-semibold ]">Source:</span> {item.web_url}</p>
