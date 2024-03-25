@@ -10,10 +10,10 @@ const FormBuilder = ({ selectedApi, setSelectedApi, searchKeyword, setSearchKeyw
         <form onSubmit={(e) => handleSubmit(e)} className=' lg:flex lg:flex-row flex flex-col justify-center mx-auto mt-[30px] mb-[20px] '>
             <div className='lg:flex lg:flex-row flex flex-col lg:gap-[60px] lg:mx-0 mx-auto'>
                 <select className=' flex font-bold lg:mx-0 mx-auto w-[200px] h-[40px] border text-[gray] border-gray-300 p-2 rounded-md' value={selectedApi} onChange={(e) => setSelectedApi(e.target.value)}>
-                    <option>Source</option>
-                    <option>The Guardian</option>
-                    <option>NewsHub</option>
-                    <option>NewYorkTimes</option>
+                    <option value="Source">Source</option>
+                    <option value="The Guardian">The Guardian</option>
+                    <option value="NewsHub">NewsHub</option>
+                    <option value="NewYorkTimes">NewYorkTimes</option>
                 </select>
                 <div className=' lg:flex  lg:flex-row md:flex md:flex-row flex flex-col lg:p-0  p-7 lg:mx-0 mx-auto gap-4'>
 

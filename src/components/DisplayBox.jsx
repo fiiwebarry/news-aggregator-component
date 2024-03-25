@@ -1,13 +1,13 @@
 import icon from "../assets/images/broadcast.png";
 
-const DisplayBox = ({ fetchedData, isLoading, selectedApi,showImage }) => {
+const DisplayBox = ({ fetchedData, isLoading, selectedApi, showImage }) => {
     return (
         <div className="">
             <div className="flex mx-auto justify-center">
                 <p className="font-bold p-2">NEW FEEDS</p>
             </div>
             <div className="container mx-auto lg:w-[990px] w-full border rounded-md h-auto shadow-md">
-            {showImage && (
+                {showImage && (
                     <div className="flex flex-col mx-auto justify-center">
                         <h1 className="mx-auto pt-9 font-bold">SELECT NEWSHUB</h1>
                         <img src={icon} alt="news" className="font-bold mt-[-90px]" />
@@ -26,12 +26,12 @@ const DisplayBox = ({ fetchedData, isLoading, selectedApi,showImage }) => {
                                     return (
                                         <div className="p-6 flex flex-wrap shadow-md bg-slate-100 lg:w-[900px] mx-4 my-4" key={index}>
                                             <div className="flex flex-col lg:w-[900px]  w-[300px]">
-                                               <p> <span className="font-bold" >Headline:</span> {webTitle}</p>
-                                               <p className="mt-1"><span className="font-semibold">Category</span>:    {sectionName}</p>
+                                                <p> <span className="font-bold" >Headline:</span> {webTitle}</p>
+                                                <p className="mt-1"><span className="font-semibold">Category</span>:    {sectionName}</p>
                                                 <p className=""><span className="font-semibold">Information Type:</span>   {type}</p>
                                                 <p className="lg:text-[18px] text-[12px]"> <span className="font-semibold">Source:</span> {webUrl}</p>
-                                               
-                                                
+
+
                                             </div>
                                         </div>
                                     )
@@ -42,7 +42,7 @@ const DisplayBox = ({ fetchedData, isLoading, selectedApi,showImage }) => {
                         {selectedApi === "NewsHub" && fetchedData.length > 0 && (
                             <div className="flex flex-wrap justify-center">
                                 {fetchedData.map((item, index) => (
-                                    
+
                                     <div className="p-6 flex flex-wrap shadow-lg bg-slate-100 lg:w-[900px] mx-4 my-4" key={index}>
                                         <div className="flex flex-col">
                                             <p><span className="font-bold">Headline:</span> {item.title}</p>
@@ -55,7 +55,7 @@ const DisplayBox = ({ fetchedData, isLoading, selectedApi,showImage }) => {
                                     </div>
                                 ))}
                             </div>
-                            
+
                         )}
 
                         {selectedApi === "NewYorkTimes" && fetchedData.length > 0 && (
@@ -63,9 +63,9 @@ const DisplayBox = ({ fetchedData, isLoading, selectedApi,showImage }) => {
                                 {fetchedData.map((item, index) => (
                                     <div className="p-6 flex flex-wrap shadow-lg bg-slate-100 lg:w-[900px]  md:w-[900px] w-full  mx-4 my-4" key={index}>
                                         <div className="flex flex-col lg:w-[900px]  w-[300px] ">
-                                            
+
                                             <p className=""><span className="font-bold">Headline:</span>  {item.headline.main}</p>
-                                            
+
                                             <p className=""> <span className="font-semibold">Description:</span> {item.snippet}</p>
                                             <p className=""> <span className="font-semibold">Category:</span> {item.news_desk}</p>
                                             <p className=""><span className="font-semibold">Author:</span> {item.byline.original}</p>
@@ -78,7 +78,7 @@ const DisplayBox = ({ fetchedData, isLoading, selectedApi,showImage }) => {
                         )}
                     </div>
                 )}
-                
+
             </div>
         </div>
     );

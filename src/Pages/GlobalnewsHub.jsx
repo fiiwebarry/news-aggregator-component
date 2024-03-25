@@ -7,7 +7,7 @@ import { guardianApi, newsApi, newyorktimesApi } from '../axios/axios'
 
 const GlobalnewsHub = () => {
 
-  const [selectedApi, setSelectedApi] = useState("Source");
+  const [selectedApi, setSelectedApi] = useState("NewYorkTimes");
   const [searchKeyword, setSearchKeyword] = useState("");
   const [searchCategory, setSearchCategory] = useState("")
   const [fetchedData, setFetchedData] = useState([]);
@@ -18,7 +18,7 @@ const GlobalnewsHub = () => {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-    if (selectedApi === "Source") {
+    if (selectedApi === "The Guardian") {
       // If no API is selected, don't perform the search
       return;
     }
@@ -26,7 +26,7 @@ const GlobalnewsHub = () => {
     try {
       let response;
       if (selectedApi === 'The Guardian') {
-      
+
         response = await guardianApi.get("/search", {
           params: {
             q: searchKeyword,
@@ -41,7 +41,7 @@ const GlobalnewsHub = () => {
 
 
       }
-       else if (selectedApi === 'NewsHub') {
+      else if (selectedApi === 'NewsHub') {
         const response = await newsApi.get("/v2/everything", {
           params: {
             q: searchKeyword,
@@ -54,9 +54,9 @@ const GlobalnewsHub = () => {
         setFetchedData(response.data.articles)
         console.log(response.data.articles);
       }
-      
-      
-      
+
+
+
       else if (selectedApi === 'NewYorkTimes') {
         console.log(searchDate);
         const response = await newyorktimesApi.get("/svc/search/v2/articlesearch.json", {
@@ -80,16 +80,16 @@ const GlobalnewsHub = () => {
       console.error("Error fetching data:", error);
     } finally {
       setIsLoading(false)
-      
+
     }
-    
+
   };
   useEffect(() => {
     if (selectedApi !== "Source") {
       // If an API is selected, trigger the search
-      handleFormSubmit({ preventDefault: () => {} }); // Call handleFormSubmit manually
+      handleFormSubmit({ preventDefault: () => { } });
     }
-  }, [selectedApi]); // Trigger useEffect whenever selectedApi changes
+  }, [selectedApi]);
 
   return (
     <>
@@ -116,12 +116,12 @@ const GlobalnewsHub = () => {
         setSearchCategory={setSearchCategory}
         searchDate={searchDate}
         setSearchDate={setSearchDate}
-        selectedApi={selectedApi} 
+        selectedApi={selectedApi}
         showImage={showImage}
-        setShowImage={setShowImage}/>
-        
-        
- </>
+        setShowImage={setShowImage} />
+
+
+    </>
   )
 }
 
